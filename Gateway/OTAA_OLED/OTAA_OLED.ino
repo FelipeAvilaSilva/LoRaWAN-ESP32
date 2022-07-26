@@ -42,7 +42,12 @@
 #define SD_MOSI 12 //12
 #define SD_MISO 13 //13
 #define LOG_PATH "/hidrosens.txt"
+
+#define vmax 17.4
+#define vin 36
+
 SPIClass sd_spi(HSPI);
+
 
 
 //GLOBAL
@@ -51,6 +56,7 @@ Rtc_Pcf8563 rtc;
 
 float humidity, temperature;
 float humidity_new = -1, temperature_new = -1;
+float voltage = 0;
 
 //DHT11
 void readDHTSensor(){  
@@ -113,11 +119,19 @@ static void prepareTxFrame( uint8_t port ){
   uint16_t temp = (uint16_t) (temperature * 100);
   uint16_t hum = (uint16_t) (humidity * 100);
   Serial.println("TempFI:"+ String(temp) + "HumFI:" + String(hum)); //debug
-    appDataSize = 4;                 //AppDataSize max value is 64
+
+  voltage = (analogRead(vin)*vmax)/4095;
+  uint16_t volt = (uint16_t) (voltage * 100);
+  Serial.print("Volts:" + String(voltage) + "\n");
+  Serial.print("VoltsFI:" + String(volt) + "\n");
+  
+    appDataSize = 6;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
     appData[3] = hum & 0xFF;
+    appData[4] = volt >> 8;
+    appData[5] = volt & 0xFF;    
 }
 
 
