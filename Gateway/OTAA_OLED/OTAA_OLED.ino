@@ -123,7 +123,7 @@ void writeSD(float temperature, float humidity){
 //ENVIA OS DADOS
 static void prepareTxFrame( uint8_t port ){
   //leituras
-  readDHTSensor();
+  //readDHTSensor();
   voltage = (analogRead(vin_port)*vmax)/4095;
 
 
@@ -200,10 +200,11 @@ void loop(){
     }
     case DEVICE_STATE_SEND:
     {
-      LoRaWAN.displaySending();
-      prepareTxFrame( appPort );
-      LoRaWAN.send(loraWanClass);
+      readDHTSensor();
       writeSD(temperature, humidity); // GRAVA NO SD, MESMO SE O GATEWAY NAO RECEBER O LORA
+      LoRaWAN.displaySending();
+      prepareTxFrame( appPort );      
+      LoRaWAN.send(loraWanClass);      
       deviceState = DEVICE_STATE_CYCLE;
       break;
     }
