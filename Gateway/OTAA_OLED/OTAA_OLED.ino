@@ -24,6 +24,7 @@
  *this project also release in GitHub:
  *https://github.com/HelTecAutomation/ESP32_LoRaWAN
 */
+
 //INCLUDE
 #include "Arduino.h"
 #include "OTAA_OLED_KEYS.h"
@@ -44,19 +45,21 @@
 #define LOG_PATH "/hidrosens.txt"
 
 #define vmax 17.4
-#define vin 36
+#define vin_port 36
 
 SPIClass sd_spi(HSPI);
 
-
-
-//GLOBAL
+//INIT
 DHT dht(DHTPIN, DHT11);
 Rtc_Pcf8563 rtc;
 
+//GLOBAL
 float humidity, temperature;
 float humidity_new = -1, temperature_new = -1;
 float voltage = 0;
+
+//FLAG
+int d_dht = 0, d_rtc = 0, d_sd = 0;
 
 //DHT11
 void readDHTSensor(){  
@@ -65,10 +68,12 @@ void readDHTSensor(){
   temperature_new = dht.readTemperature();
   delay(50);
   if((isnan(humidity_new) || isnan(temperature_new) || humidity_new == -1 || temperature_new == -1 )){
-    Serial.println("Não foi possivel ler o sensor:");  
+    Serial.println("Não foi possivel ler o sensor:"); 
+    d_dht = 0;     
   }else if(humidity_new != humidity || temperature_new != temperature){
     humidity = humidity_new;
     temperature = temperature_new;
+    d_dht = 1;
   }
 }
 
@@ -77,6 +82,7 @@ void writeSD(float temperature, float humidity){
   File test = SD.open(LOG_PATH, FILE_APPEND);
   if(!test){
     Serial.println("SD Card: writing file failed.");
+    d_sd = 0;
   }else{
     digitalWrite(LED_BUILTIN, HIGH); 
     Serial.print(rtc.getDay());    
@@ -109,49 +115,61 @@ void writeSD(float temperature, float humidity){
       test.print(rtc.getYear());  
       test.printf("\n");
       test.close();
-      digitalWrite(LED_BUILTIN, LOW);  
+      digitalWrite(LED_BUILTIN, LOW);
+      d_sd = 1;  
   }  
 }
 
 //ENVIA OS DADOS
 static void prepareTxFrame( uint8_t port ){
+  //leituras
   readDHTSensor();
+  voltage = (analogRead(vin_port)*vmax)/4095;
+
+
+  //int8 -> int16
   uint16_t temp = (uint16_t) (temperature * 100);
   uint16_t hum = (uint16_t) (humidity * 100);
-  Serial.println("TempFI:"+ String(temp) + "HumFI:" + String(hum)); //debug
-
-  voltage = (analogRead(vin)*vmax)/4095;
   uint16_t volt = (uint16_t) (voltage * 100);
+
+
+  //debug  
+  /*Serial.println("TempFI:"+ String(temp) + "HumFI:" + String(hum)); 
   Serial.print("Volts:" + String(voltage) + "\n");
-  Serial.print("VoltsFI:" + String(volt) + "\n");
+  Serial.print("VoltsFI:" + String(volt) + "\n");*/
   
-    appDataSize = 6;                 //AppDataSize max value is 64
+  //envio
+    appDataSize = 8;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
     appData[3] = hum & 0xFF;
     appData[4] = volt >> 8;
-    appData[5] = volt & 0xFF;    
+    appData[5] = volt & 0xFF;
+    appData[6] = d_dht;
+    appData[7] = d_sd;        
 }
 
 
 void setup(){  
   Serial.begin(115200);
-  Wire.begin(4, 15);  
+  Wire.begin(4, 15);
+  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);  
   pinMode(LED_BUILTIN, OUTPUT);
   
   /*rtc.initClock(); //clear out the registers  
   rtc.setDate(17, 1, 6, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
   rtc.setTime(0, 49, 0); //hr, min, sec*/    
 
-  //SD INIT
-  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);  
+  //SD INIT    
   if(!SD.begin(SD_CS, sd_spi)){
-      Serial.println("Couldn't find SD Card");
+    Serial.println("Couldn't find SD Card");
+    d_sd = 0;
+  }else{
+    d_sd = 1;
   }
   //DHT INIT
   dht.begin();
-
   //DISPLAY INIT
   if(mcuStarted == 0){  
     LoRaWAN.displayMcuInit();
