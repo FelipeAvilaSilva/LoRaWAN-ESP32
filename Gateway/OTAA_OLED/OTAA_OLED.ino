@@ -34,6 +34,9 @@
 #include <Wire.h>
 #include <SD.h>
 #include <Rtc_Pcf8563.h>
+#include <TinyGPSPlus.h>
+#include <HardwareSerial.h>
+//#include <SoftwareSerial.h>
 
 //DEFINE
 #define DHTPIN 21//13
@@ -52,11 +55,19 @@ SPIClass sd_spi(HSPI);
 //INIT
 DHT dht(DHTPIN, DHT11);
 Rtc_Pcf8563 rtc;
+TinyGPSPlus gps;
+HardwareSerial ss(1);
 
 //GLOBAL
 float humidity, temperature;
 float humidity_new = -1, temperature_new = -1;
 float voltage = 0;
+
+//GPS
+static const int RXPin = 16, TXPin = 17;
+static const uint32_t GPSBaud = 4800;
+int32_t lat = 0;
+int32_t lng = 0;
 
 //FLAG
 int d_dht = 0, d_rtc = 0, d_sd = 0;
@@ -74,6 +85,23 @@ void readDHTSensor(){
     humidity = humidity_new;
     temperature = temperature_new;
     d_dht = 1;
+  }
+
+  for(unsigned long start = millis(); millis() - start < 5000;){
+    while(ss.available()){
+      if(gps.encode(ss.read())){
+        lat = gps.location.lat() * 100000;
+        lng = gps.location.lng() * 100000;
+        Serial.println(gps.location.lat(), 6);
+        Serial.println(gps.location.lng(), 6); 
+        
+      }else{
+        lat = 0;
+        lng = 0;
+        Serial.println("lat = ERRO ");
+        Serial.println("lat = ERRO");
+      }
+    }
   }
 }
 
@@ -139,7 +167,7 @@ static void prepareTxFrame( uint8_t port ){
   Serial.print("VoltsFI:" + String(volt) + "\n");*/
   
   //envio
-    appDataSize = 8;                 //AppDataSize max value is 64
+    appDataSize = 16;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
@@ -147,19 +175,34 @@ static void prepareTxFrame( uint8_t port ){
     appData[4] = volt >> 8;
     appData[5] = volt & 0xFF;
     appData[6] = d_dht;
-    appData[7] = d_sd;        
+    appData[7] = d_sd;
+    appData[8] = (lat >> 24) & 0xFF;
+    appData[9] = (lat >> 16) & 0xFF;
+    appData[10] = (lat >> 8) & 0xFF;
+    appData[11] = lat & 0xFF;
+    appData[12] = (lng >> 24) & 0xFF;
+    appData[13] = (lng >> 16) & 0xFF;
+    appData[14] = (lng >> 8) & 0xFF;
+    appData[15] = lng & 0xFF;
 }
 
 
 void setup(){  
   Serial.begin(115200);
   Wire.begin(4, 15);
-  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);  
+  sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+  //SoftwareSerial ss(RXPin, TXPin);  
   pinMode(LED_BUILTIN, OUTPUT);
   
   /*rtc.initClock(); //clear out the registers  
   rtc.setDate(17, 1, 6, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
   rtc.setTime(0, 49, 0); //hr, min, sec*/    
+
+  //GPS INIT
+  ss.begin(GPSBaud, SERIAL_8N1, RX, TX);
+
+  
+
 
   //SD INIT    
   if(!SD.begin(SD_CS, sd_spi)){
