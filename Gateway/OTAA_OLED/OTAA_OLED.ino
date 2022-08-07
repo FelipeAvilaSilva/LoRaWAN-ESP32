@@ -74,7 +74,7 @@ LoraEncoder encoder(buffer);
 
 
 //FLAG
-int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = 0;
+int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = -1;
 
 //DHT11
 void readDHT(){  
@@ -98,36 +98,20 @@ void readGPS(){
   while(ss.available()){
     char in = ss.read();
     recebido = gps.encode(in);
-  }d_gps = 2;
+  }
 
   if(true){
     lat = double (gps.location.lat());
     lng = double (gps.location.lng());
     encoder.writeLatLng(lat,lng);
     d_gps = 1;
+    delay(100);
 
-    
 
-        Serial.print("Latitude: ");
-       // latitude = latitude / 10;
-        Serial.println(lat/100000);
-     
-
-        Serial.print("Longitude: ");
-       // longitude = longitude / 10;
-        Serial.println(lng/100000);
-     
-
-    //velocidade = gps.speed();
-    //Serial.print("Velocidade (km/h): ");
-    //Serial.println(velocidade, 2);  //Conversão de Nós para Km/h
-
-    // satelites = gps.satellites();
-     //precisao =  gps.hdop();
     }else{
-      lat = -33.8688;
-      lng = 151.2092;
       d_gps = 0;
+      lat = 0;
+      lng = 0;
     }
 
   
@@ -172,9 +156,7 @@ void writeSD(float temperature, float humidity){
       test.print("||");
       test.print(lat);
       test.print(",");
-      test.print(lng);  
-      test.print("||");
-      test.print(d_gps);
+      test.print(double(lng));  
 
       test.printf("\n");
       test.close();
@@ -228,8 +210,9 @@ static void prepareTxFrame( uint8_t port ){
     appData[12] = buffer[4];
     appData[13] = buffer[5];
     appData[14] = buffer[6];
-    appData[15] = buffer[7];  
-    appData[17] = d_gps;
+    appData[15] = buffer[7]; 
+    appData[15] = buffer[7]; 
+    appData[17] = d_gps;  
     
 }
 
