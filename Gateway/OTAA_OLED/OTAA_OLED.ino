@@ -34,9 +34,10 @@
 #include <Wire.h>
 #include <SD.h>
 #include <Rtc_Pcf8563.h>
-#include <TinyGPSPlus.h>
+#include <TinyGPS++.h>
 #include <HardwareSerial.h>
-//#include <SoftwareSerial.h>
+#include <LoraEncoder.h>
+
 
 //DEFINE
 #define DHTPIN 21//13
@@ -55,8 +56,8 @@ SPIClass sd_spi(HSPI);
 //INIT
 DHT dht(DHTPIN, DHT11);
 Rtc_Pcf8563 rtc;
-TinyGPSPlus gps;
 HardwareSerial ss(1);
+TinyGPSPlus gps;
 
 //GLOBAL
 float humidity, temperature;
@@ -64,16 +65,19 @@ float humidity_new = -1, temperature_new = -1;
 float voltage = 0;
 
 //GPS
-static const int RXPin = 16, TXPin = 17;
-static const uint32_t GPSBaud = 4800;
-int32_t lat = 0;
-int32_t lng = 0;
+static const int RXPin = 3, TXPin = 1; //RXPin = 16, TXPin = 17;
+static const uint32_t GPSBaud = 9600;
+double lat = 0;
+double lng = 0;
+byte buffer[8];
+LoraEncoder encoder(buffer);
+
 
 //FLAG
-int d_dht = 0, d_rtc = 0, d_sd = 0;
+int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = 0;
 
 //DHT11
-void readDHTSensor(){  
+void readDHT(){  
   humidity_new = dht.readHumidity();
   delay(50);
   temperature_new = dht.readTemperature();
@@ -86,23 +90,47 @@ void readDHTSensor(){
     temperature = temperature_new;
     d_dht = 1;
   }
+}
 
-  for(unsigned long start = millis(); millis() - start < 5000;){
-    while(ss.available()){
-      if(gps.encode(ss.read())){
-        lat = gps.location.lat() * 100000;
-        lng = gps.location.lng() * 100000;
-        Serial.println(gps.location.lat(), 6);
-        Serial.println(gps.location.lng(), 6); 
-        
-      }else{
-        lat = 0;
-        lng = 0;
-        Serial.println("lat = ERRO ");
-        Serial.println("lat = ERRO");
-      }
+void readGPS(){
+  bool recebido = false;
+
+  while(ss.available()){
+    char in = ss.read();
+    recebido = gps.encode(in);
+  }d_gps = 2;
+
+  if(true){
+    lat = double (gps.location.lat());
+    lng = double (gps.location.lng());
+    encoder.writeLatLng(lat,lng);
+    d_gps = 1;
+
+    
+
+        Serial.print("Latitude: ");
+       // latitude = latitude / 10;
+        Serial.println(lat/100000);
+     
+
+        Serial.print("Longitude: ");
+       // longitude = longitude / 10;
+        Serial.println(lng/100000);
+     
+
+    //velocidade = gps.speed();
+    //Serial.print("Velocidade (km/h): ");
+    //Serial.println(velocidade, 2);  //Conversão de Nós para Km/h
+
+    // satelites = gps.satellites();
+     //precisao =  gps.hdop();
+    }else{
+      lat = -33.8688;
+      lng = 151.2092;
+      d_gps = 0;
     }
-  }
+
+  
 }
 
 //SD
@@ -141,6 +169,13 @@ void writeSD(float temperature, float humidity){
       test.print(rtc.getMonth());
       test.print("/");
       test.print(rtc.getYear());  
+      test.print("||");
+      test.print(lat);
+      test.print(",");
+      test.print(lng);  
+      test.print("||");
+      test.print(d_gps);
+
       test.printf("\n");
       test.close();
       digitalWrite(LED_BUILTIN, LOW);
@@ -167,7 +202,7 @@ static void prepareTxFrame( uint8_t port ){
   Serial.print("VoltsFI:" + String(volt) + "\n");*/
   
   //envio
-    appDataSize = 16;                 //AppDataSize max value is 64
+    appDataSize = 32;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
@@ -176,14 +211,26 @@ static void prepareTxFrame( uint8_t port ){
     appData[5] = volt & 0xFF;
     appData[6] = d_dht;
     appData[7] = d_sd;
-    appData[8] = (lat >> 24) & 0xFF;
+   /* appData[8] = (lat >> 24) & 0xFF;
     appData[9] = (lat >> 16) & 0xFF;
     appData[10] = (lat >> 8) & 0xFF;
     appData[11] = lat & 0xFF;
     appData[12] = (lng >> 24) & 0xFF;
     appData[13] = (lng >> 16) & 0xFF;
     appData[14] = (lng >> 8) & 0xFF;
-    appData[15] = lng & 0xFF;
+    appData[15] = lng & 0xFF;*/
+
+    appData[8] = buffer[0];
+    appData[9] = buffer[1];
+    appData[10] = buffer[2];
+    appData[11] = buffer[3];
+
+    appData[12] = buffer[4];
+    appData[13] = buffer[5];
+    appData[14] = buffer[6];
+    appData[15] = buffer[7];  
+    appData[17] = d_gps;
+    
 }
 
 
@@ -243,7 +290,8 @@ void loop(){
     }
     case DEVICE_STATE_SEND:
     {
-      readDHTSensor();
+      readDHT();
+      readGPS();
       writeSD(temperature, humidity); // GRAVA NO SD, MESMO SE O GATEWAY NAO RECEBER O LORA
       LoRaWAN.displaySending();
       prepareTxFrame( appPort );      
