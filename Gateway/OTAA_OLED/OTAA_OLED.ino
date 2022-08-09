@@ -92,29 +92,29 @@ void readDHT(){
   }
 }
 
-void readGPS(){
-  bool recebido = false;
+void readGPS(){ 
+  bool newdata = false;
+  unsigned long start = millis();
 
-  while(ss.available()){
-    char in = ss.read();
-    recebido = gps.encode(in);
+  while(millis() - start < 5000){
+    if(ss.available()){
+      char c = ss.read();
+      if(gps.encode(c)){
+        newdata = true;
+      }
+    }
   }
 
-  if(true){
+  if(newdata){
     lat = double (gps.location.lat());
     lng = double (gps.location.lng());
-    encoder.writeLatLng(lat,lng);
-    d_gps = 1;
-    delay(100);
-
-
+    if(lat != 0 || lng != 0){    
+      d_gps = 1;
     }else{
       d_gps = 0;
-      lat = 0;
-      lng = 0;
-    }
-
-  
+    }  
+    encoder.writeLatLng(lat,lng);
+  }
 }
 
 //SD
@@ -154,10 +154,11 @@ void writeSD(float temperature, float humidity){
       test.print("/");
       test.print(rtc.getYear());  
       test.print("||");
-      test.print(lat);
+      String slat = String(lat);
+      test.print(slat);
       test.print(",");
-      test.print(double(lng));  
-
+      String slng = String(lng);
+      test.print(slng);  
       test.printf("\n");
       test.close();
       digitalWrite(LED_BUILTIN, LOW);
@@ -167,21 +168,12 @@ void writeSD(float temperature, float humidity){
 
 //ENVIA OS DADOS
 static void prepareTxFrame( uint8_t port ){
-  //leituras
-  //readDHTSensor();
   voltage = (analogRead(vin_port)*vmax)/4095;
-
 
   //int8 -> int16
   uint16_t temp = (uint16_t) (temperature * 100);
   uint16_t hum = (uint16_t) (humidity * 100);
   uint16_t volt = (uint16_t) (voltage * 100);
-
-
-  //debug  
-  /*Serial.println("TempFI:"+ String(temp) + "HumFI:" + String(hum)); 
-  Serial.print("Volts:" + String(voltage) + "\n");
-  Serial.print("VoltsFI:" + String(volt) + "\n");*/
   
   //envio
     appDataSize = 32;                 //AppDataSize max value is 64
@@ -193,27 +185,16 @@ static void prepareTxFrame( uint8_t port ){
     appData[5] = volt & 0xFF;
     appData[6] = d_dht;
     appData[7] = d_sd;
-   /* appData[8] = (lat >> 24) & 0xFF;
-    appData[9] = (lat >> 16) & 0xFF;
-    appData[10] = (lat >> 8) & 0xFF;
-    appData[11] = lat & 0xFF;
-    appData[12] = (lng >> 24) & 0xFF;
-    appData[13] = (lng >> 16) & 0xFF;
-    appData[14] = (lng >> 8) & 0xFF;
-    appData[15] = lng & 0xFF;*/
-
     appData[8] = buffer[0];
     appData[9] = buffer[1];
     appData[10] = buffer[2];
     appData[11] = buffer[3];
-
     appData[12] = buffer[4];
     appData[13] = buffer[5];
     appData[14] = buffer[6];
     appData[15] = buffer[7]; 
     appData[15] = buffer[7]; 
-    appData[17] = d_gps;  
-    
+    appData[17] = d_gps;      
 }
 
 
@@ -221,18 +202,14 @@ void setup(){
   Serial.begin(115200);
   Wire.begin(4, 15);
   sd_spi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
-  //SoftwareSerial ss(RXPin, TXPin);  
   pinMode(LED_BUILTIN, OUTPUT);
   
   /*rtc.initClock(); //clear out the registers  
-  rtc.setDate(17, 1, 6, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
-  rtc.setTime(0, 49, 0); //hr, min, sec*/    
+  rtc.setDate(8, 1, 8, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
+  rtc.setTime(23, 39, 0); //hr, min, sec*/    
 
   //GPS INIT
   ss.begin(GPSBaud, SERIAL_8N1, RX, TX);
-
-  
-
 
   //SD INIT    
   if(!SD.begin(SD_CS, sd_spi)){
@@ -285,7 +262,7 @@ void loop(){
     case DEVICE_STATE_CYCLE:
     {
       // Schedule next packet transmission
-      txDutyCycleTime = appTxDutyCycle; + randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND );
+      txDutyCycleTime = appTxDutyCycle; //+ randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND );
       LoRaWAN.cycle(txDutyCycleTime);
       deviceState = DEVICE_STATE_SLEEP;
       break;
