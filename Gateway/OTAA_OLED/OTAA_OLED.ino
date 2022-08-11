@@ -71,10 +71,11 @@ double lat = 0;
 double lng = 0;
 byte buffer[8];
 LoraEncoder encoder(buffer);
+char location[30];
 
 
 //FLAG
-int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = -1;
+int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = 0;
 
 //DHT11
 void readDHT(){  
@@ -92,29 +93,29 @@ void readDHT(){
   }
 }
 
-void readGPS(){ 
-  bool newdata = false;
+void statusGPS(){ 
+  digitalWrite(LED_BUILTIN, HIGH); 
   unsigned long start = millis();
-
-  while(millis() - start < 5000){
-    if(ss.available()){
-      char c = ss.read();
-      if(gps.encode(c)){
-        newdata = true;
-      }
+  while(millis() - start < 1000){
+    if(ss.available() > 0){ 
+      if(gps.encode(ss.read())){
+          readGPS();
+      }    
     }
   }
+  digitalWrite(LED_BUILTIN, LOW); 
+}
 
-  if(newdata){
+void readGPS(){
+  if(gps.location.isValid()){
     lat = double (gps.location.lat());
-    lng = double (gps.location.lng());
-    if(lat != 0 || lng != 0){    
-      d_gps = 1;
-    }else{
-      d_gps = 0;
-    }  
-    encoder.writeLatLng(lat,lng);
+    lng = double (gps.location.lng());    
+    sprintf(location, "%.6f,%.6f", gps.location.lat(), gps.location.lng());
+    d_gps = 1;   
+  }else{
+    d_gps = 0;
   }
+  encoder.writeLatLng(lat,lng);
 }
 
 //SD
@@ -124,7 +125,7 @@ void writeSD(float temperature, float humidity){
     Serial.println("SD Card: writing file failed.");
     d_sd = 0;
   }else{
-    digitalWrite(LED_BUILTIN, HIGH); 
+    //digitalWrite(LED_BUILTIN, HIGH); 
     Serial.print(rtc.getDay());    
     Serial.print('/');
     Serial.print(rtc.getMonth());
@@ -154,14 +155,10 @@ void writeSD(float temperature, float humidity){
       test.print("/");
       test.print(rtc.getYear());  
       test.print("||");
-      String slat = String(lat);
-      test.print(slat);
-      test.print(",");
-      String slng = String(lng);
-      test.print(slng);  
-      test.printf("\n");
+      test.print(location);      
+      test.printf("\n");      
       test.close();
-      digitalWrite(LED_BUILTIN, LOW);
+     // digitalWrite(LED_BUILTIN, LOW);
       d_sd = 1;  
   }  
 }
@@ -176,7 +173,7 @@ static void prepareTxFrame( uint8_t port ){
   uint16_t volt = (uint16_t) (voltage * 100);
   
   //envio
-    appDataSize = 32;                 //AppDataSize max value is 64
+    appDataSize = 20;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
@@ -205,8 +202,8 @@ void setup(){
   pinMode(LED_BUILTIN, OUTPUT);
   
   /*rtc.initClock(); //clear out the registers  
-  rtc.setDate(8, 1, 8, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
-  rtc.setTime(23, 39, 0); //hr, min, sec*/    
+  rtc.setDate(9, 1, 8, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
+  rtc.setTime(1, 33, 0); //hr, min, sec*/    
 
   //GPS INIT
   ss.begin(GPSBaud, SERIAL_8N1, RX, TX);
@@ -251,7 +248,7 @@ void loop(){
     case DEVICE_STATE_SEND:
     {
       readDHT();
-      readGPS();
+      statusGPS();
       writeSD(temperature, humidity); // GRAVA NO SD, MESMO SE O GATEWAY NAO RECEBER O LORA
       LoRaWAN.displaySending();
       prepareTxFrame( appPort );      
