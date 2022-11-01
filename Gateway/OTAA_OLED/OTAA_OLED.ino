@@ -37,6 +37,8 @@
 #include <TinyGPS++.h>
 #include <HardwareSerial.h>
 #include <LoraEncoder.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
 
 //DEFINE
@@ -48,8 +50,9 @@
 #define SD_MISO 13 //13
 #define LOG_PATH "/hidrosens.txt"
 
-#define vmax 17.4
+#define vmax 20.1
 #define vin_port 36
+#define ONE_WIRE_BUS 2 //gpio 2
 
 SPIClass sd_spi(HSPI);
 
@@ -58,11 +61,14 @@ DHT dht(DHTPIN, DHT11);
 Rtc_Pcf8563 rtc;
 HardwareSerial ss(1);
 TinyGPSPlus gps;
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature DS18B20(&oneWire);
 
 //GLOBAL
 float humidity, temperature;
 float humidity_new = -1, temperature_new = -1;
 float voltage = 0;
+float temp_agua = 0;
 
 //GPS
 static const int RXPin = 3, TXPin = 1; //RXPin = 16, TXPin = 17;
@@ -79,6 +85,9 @@ int d_dht = 0, d_rtc = 0, d_sd = 0, d_gps = 0;
 
 //DHT11
 void readDHT(){  
+  DS18B20.requestTemperatures();
+  delay(50);
+  temp_agua = DS18B20.getTempCByIndex(0);
   humidity_new = dht.readHumidity();
   delay(50);
   temperature_new = dht.readTemperature();
@@ -109,7 +118,7 @@ void statusGPS(){
 void readGPS(){
   if(gps.location.isValid()){
     lat = double (gps.location.lat());
-    lng = double (gps.location.lng());    
+    lng = double (gps.location.lng());     
     sprintf(location, "%.6f,%.6f", gps.location.lat(), gps.location.lng());
     d_gps = 1;   
   }else{
@@ -155,7 +164,9 @@ void writeSD(float temperature, float humidity){
       test.print("/");
       test.print(rtc.getYear());  
       test.print("||");
-      test.print(location);      
+      test.print(location);   
+      test.print("|||");   
+      test.print(temp_agua);
       test.printf("\n");      
       test.close();
      // digitalWrite(LED_BUILTIN, LOW);
@@ -171,9 +182,10 @@ static void prepareTxFrame( uint8_t port ){
   uint16_t temp = (uint16_t) (temperature * 100);
   uint16_t hum = (uint16_t) (humidity * 100);
   uint16_t volt = (uint16_t) (voltage * 100);
+  uint16_t temp_a = (uint16_t) (temp_agua * 100);
   
   //envio
-    appDataSize = 20;                 //AppDataSize max value is 64
+    appDataSize = 25;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
     appData[1] = temp & 0xFF;
     appData[2] = hum >> 8;
@@ -190,8 +202,10 @@ static void prepareTxFrame( uint8_t port ){
     appData[13] = buffer[5];
     appData[14] = buffer[6];
     appData[15] = buffer[7]; 
-    appData[15] = buffer[7]; 
-    appData[17] = d_gps;      
+    appData[16] = buffer[8]; 
+    appData[17] = d_gps;  
+    appData[18] = temp_a >> 8;
+    appData[19] = temp_a & 0xFF;    
 }
 
 
@@ -203,7 +217,10 @@ void setup(){
   
   /*rtc.initClock(); //clear out the registers  
   rtc.setDate(9, 1, 8, 0, 22); //day, weekday, month, century(1=1900, 0=2000), year(0-99)
-  rtc.setTime(1, 33, 0); //hr, min, sec*/    
+  rtc.setTime(1, 33, 0); //hr, min, sec*/   
+
+  // TEMP INIT
+  DS18B20.begin(); 
 
   //GPS INIT
   ss.begin(GPSBaud, SERIAL_8N1, RX, TX);
