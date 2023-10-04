@@ -39,6 +39,7 @@
 #include <LoraEncoder.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include <LSM303.h>
 
 
 //DEFINE
@@ -63,12 +64,17 @@ HardwareSerial ss(1);
 TinyGPSPlus gps;
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature DS18B20(&oneWire);
+LSM303 lsm303;
 
 //GLOBAL
 float humidity, temperature;
 float humidity_new = -1, temperature_new = -1;
 float voltage = 0;
 float temp_agua = 0;
+
+//BOIA 
+float roll = 0;
+float heading = 0;
 
 //GPS
 static const int RXPin = 3, TXPin = 1; //RXPin = 16, TXPin = 17;
@@ -102,17 +108,50 @@ void readDHT(){
   }
 }
 
-void statusGPS(){ 
-  digitalWrite(LED_BUILTIN, HIGH); 
-  unsigned long start = millis();
-  while(millis() - start < 1000){
-    if(ss.available() > 0){ 
-      if(gps.encode(ss.read())){
-          readGPS();
-      }    
+// Funcao para ler IMU
+void readLsm303(){
+  const float alpha = 0.10;   // Alpha
+  float fXa, fYa, fZa = 0;    // Variaveis filtro passa baixa (roll)
+  float headingFilt = 0;      // Variaveis filtro passa baixa (heading)
+
+  if (lsm303.init()) {
+    lsm303.enableDefault();
+  
+
+    //Offsets do magnetrometro. Caso precisar, rodar o codigo de calibracao para achar novos offsets.
+    lsm303.m_min = (LSM303::vector<int16_t>) {
+      -185, -193, -178   
+    };
+    lsm303.m_max = (LSM303::vector<int16_t>) {
+      +241, +257, +243   
+    };
+
+    // Filtro passa baixa. 
+    for (byte i = 0; i < 30; i++) {
+      lsm303.read();   // Ler novos dados da IMU. {0, 0,-1}: Orientacao da IMU na boia.
+      headingFilt = lsm303.heading((LSM303::vector<int>){0, 0,-1}) * alpha + (lsm303.heading((LSM303::vector<int>){0, 0,-1}) * (1.0 - alpha)); 
+      fXa = lsm303.a.x * alpha + (fXa * (1.0 - alpha));
+      fYa = lsm303.a.y * alpha + (fYa * (1.0 - alpha));
+      fZa = lsm303.a.z * alpha + (fZa * (1.0 - alpha));
+      delay(1);
     }
+
+    // Calculos
+    //float pitch = (atan2(-fXa, sqrt((long)fYa * fYa + (long)fZa * fZa)) * 180) / PI;
+    roll = abs((atan2(fYa, fZa) * 180) / PI);
+    heading = headingFilt;
+
+    //Serial.print(F("pitch: ")); Serial.println(pitch);
+    Serial.print("Bussola:");
+    Serial.print(heading);
+    Serial.println("");
+    Serial.print("Angulo:");
+    Serial.println(roll);
+
   }
-  digitalWrite(LED_BUILTIN, LOW); 
+  else {
+    Serial.println(F("Erro no sensor."));
+  }
 }
 
 void readGPS(){
@@ -126,6 +165,21 @@ void readGPS(){
   }
   encoder.writeLatLng(lat,lng);
 }
+
+void statusGPS(){ 
+  digitalWrite(LED_BUILTIN, HIGH); 
+  unsigned long start = millis();
+  while(millis() - start < 1000){
+    if(ss.available() > 0){ 
+      if(gps.encode(ss.read())){
+          readGPS();
+      }    
+    }
+  }
+  digitalWrite(LED_BUILTIN, LOW); 
+}
+
+
 
 //SD
 void writeSD(float temperature, float humidity){  
@@ -183,7 +237,11 @@ static void prepareTxFrame( uint8_t port ){
   uint16_t hum = (uint16_t) (humidity * 100);
   uint16_t volt = (uint16_t) (voltage * 100);
   uint16_t temp_a = (uint16_t) (temp_agua * 100);
+  uint16_t new_roll = (uint16_t) (roll * 100);
+  uint16_t new_heading = (uint16_t) (heading * 100);
   
+  
+
   //envio
     appDataSize = 25;                 //AppDataSize max value is 64
     appData[0] = temp >> 8;
@@ -204,8 +262,13 @@ static void prepareTxFrame( uint8_t port ){
     appData[15] = buffer[7]; 
     appData[16] = buffer[8]; 
     appData[17] = d_gps;  
+
     appData[18] = temp_a >> 8;
-    appData[19] = temp_a & 0xFF;    
+    appData[19] = temp_a & 0xFF;
+    appData[20] = new_roll >> 8;
+    appData[21] = new_roll & 0xFF;
+    appData[22] = new_heading >> 8;
+    appData[23] = new_heading & 0xFF;    
 }
 
 
@@ -264,6 +327,7 @@ void loop(){
     }
     case DEVICE_STATE_SEND:
     {
+      readLsm303();
       readDHT();
       statusGPS();
       writeSD(temperature, humidity); // GRAVA NO SD, MESMO SE O GATEWAY NAO RECEBER O LORA
