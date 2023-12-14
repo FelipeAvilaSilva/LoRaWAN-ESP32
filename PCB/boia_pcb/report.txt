@@ -1,0 +1,480 @@
+Informação: Processando o símbolo 'F1:Fuse:Fuse_Blade_Mini_directSolder'.
+Informação: Processando o símbolo 'J8:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J24:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J7:Connector_PinSocket_2.54mm:PinSocket_1x14_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J5:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J19:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J21:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J3:Connector_PinSocket_2.54mm:PinSocket_2x02_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J22:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J12:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J1:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J23:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J11:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J13:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J18:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J25:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J6:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J27:Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J26:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J4:Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J28:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J2:Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J10:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J20:Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J14:Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J9:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J17:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J16:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J15:Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J29:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J30:Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J31:Connector_PinSocket_2.54mm:PinSocket_1x15_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J32:Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'J33:Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical'.
+Informação: Processando o símbolo 'R1:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'.
+Informação: Processando o símbolo 'R2:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'.
+Informação: Processando o símbolo 'R3:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'.
+Informação: Processando o símbolo 'R4:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'.
+Informação: Processando o símbolo 'U1:YAAJ_DCDC_StepDown_LM2596'.
+Informação: Processando o símbolo 'U2:Heltec_wifi_LoRa_v2:Heltec_WiFi_LoRa_V2'.
+O valor J1 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J1 foi atualizada de  para /2c3475ce-4cff-4a5a-82a6-e5b873c0ee4e.
+As J1 propriedades foram atualizadas.
+Adiciona rede GPIO21.
+J1 conectado pino 1 para GPIO21.
+Adiciona rede Net-(J1-Pin_2).
+J1 conectado pino 2 para Net-(J1-Pin_2).
+J2 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J2.
+O valor J2 foi trocado de PinSocket_1x04_P2.54mm_Vertical para GPS.
+A associação do símbolo J2 foi atualizada de  para /63b7eb04-8ebf-499d-80ff-a469a5c0f9e2.
+As J2 propriedades foram atualizadas.
+Adiciona rede GND.
+J2 conectado pino 1 para GND.
+Adiciona rede Net-(J2-Pin_2).
+J2 conectado pino 2 para Net-(J2-Pin_2).
+Adiciona rede Net-(J2-Pin_3).
+J2 conectado pino 3 para Net-(J2-Pin_3).
+Adiciona rede +3.3V.
+J2 conectado pino 4 para +3.3V.
+J3 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x02_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J3.
+O valor J3 foi trocado de PinSocket_2x02_P2.54mm_Vertical para Conn_01x02.
+A associação do símbolo J3 foi atualizada de  para /1e4d180c-d0ae-41f9-8c92-b51c4ae965e2.
+As J3 propriedades foram atualizadas.
+J3 conectado pino 1 para +12V.
+Adiciona rede GNDREF.
+J3 conectado pino 2 para GNDREF.
+J4 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x04_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J4.
+O valor J4 foi trocado de PinSocket_1x04_P2.54mm_Vertical para DHT11.
+A associação do símbolo J4 foi atualizada de  para /5b1c5385-24e6-4bd5-8512-9a1de868ea35.
+As J4 propriedades foram atualizadas.
+J4 conectado pino 1 para +3.3V.
+J4 conectado pino 2 para Net-(J1-Pin_2).
+Adiciona rede unconnected-(J4-Pin_3-Pad3).
+J4 conectado pino 3 para unconnected-(J4-Pin_3-Pad3).
+J4 conectado pino 4 para GND.
+J5 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J5.
+O valor J5 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J5 foi atualizada de  para /9f171b9b-927a-43f1-b088-494a952f85e0.
+As J5 propriedades foram atualizadas.
+Adiciona rede RX.
+J5 conectado pino 1 para RX.
+J5 conectado pino 2 para Net-(J2-Pin_3).
+J6 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J6.
+O valor J6 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J6 foi atualizada de  para /c09ca0ec-1de2-4138-9525-5541a5574e66.
+As J6 propriedades foram atualizadas.
+Adiciona rede TX.
+J6 conectado pino 1 para TX.
+J6 conectado pino 2 para Net-(J2-Pin_2).
+J7 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x14_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J7.
+O valor J7 foi trocado de PinSocket_1x14_P2.54mm_Vertical para Conn_01x14.
+A associação do símbolo J7 foi atualizada de  para /be18baf4-37dc-444d-a3db-ca1bd86f6b48.
+As J7 propriedades foram atualizadas.
+Adiciona rede GPIO16.
+J7 conectado pino 1 para GPIO16.
+Adiciona rede GPIO17.
+J7 conectado pino 2 para GPIO17.
+Adiciona rede GPIO4.
+J7 conectado pino 3 para GPIO4.
+Adiciona rede GPIO2.
+J7 conectado pino 4 para GPIO2.
+Adiciona rede GPIO15.
+J7 conectado pino 5 para GPIO15.
+Adiciona rede GPIO5.
+J7 conectado pino 6 para GPIO5.
+Adiciona rede GPIO18.
+J7 conectado pino 7 para GPIO18.
+Adiciona rede GPIO23.
+J7 conectado pino 8 para GPIO23.
+Adiciona rede GPIO19.
+J7 conectado pino 9 para GPIO19.
+Adiciona rede GPIO22.
+J7 conectado pino 10 para GPIO22.
+Adiciona rede GPIO0.
+J7 conectado pino 11 para GPIO0.
+Adiciona rede RST.
+J7 conectado pino 12 para RST.
+J7 conectado pino 13 para RX.
+J7 conectado pino 14 para TX.
+J8 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J8.
+O valor J8 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J8 foi atualizada de  para /3f33071e-f6f7-458f-ad7f-686a5d8af6ba.
+As J8 propriedades foram atualizadas.
+J8 conectado pino 1 para +12V.
+J8 conectado pino 2 para +12V.
+J8 conectado pino 3 para +12V.
+J8 conectado pino 4 para +12V.
+J8 conectado pino 5 para +12V.
+J8 conectado pino 6 para +12V.
+J9 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J9.
+O valor J9 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J9 foi atualizada de  para /c1eb7e3d-2d7e-46a4-8e18-8aba74f8f53e.
+As J9 propriedades foram atualizadas.
+J9 conectado pino 1 para GNDREF.
+J9 conectado pino 2 para GNDREF.
+J9 conectado pino 3 para GNDREF.
+J9 conectado pino 4 para GNDREF.
+J9 conectado pino 5 para GNDREF.
+J9 conectado pino 6 para GNDREF.
+J10 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J10.
+O valor J10 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J10 foi atualizada de  para /bfdf70e0-c651-4395-b2d7-2460e27fea33.
+As J10 propriedades foram atualizadas.
+Adiciona rede GPIO13.
+J10 conectado pino 1 para GPIO13.
+Adiciona rede Net-(J10-Pin_2).
+J10 conectado pino 2 para Net-(J10-Pin_2).
+J11 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J11.
+O valor J11 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J11 foi atualizada de  para /934ff5d8-f1d5-4175-a86f-a900ef380173.
+As J11 propriedades foram atualizadas.
+Adiciona rede GPIO12.
+J11 conectado pino 1 para GPIO12.
+Adiciona rede Net-(J11-Pin_2).
+J11 conectado pino 2 para Net-(J11-Pin_2).
+J12 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J12.
+O valor J12 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J12 foi atualizada de  para /fe1f8e51-a3b1-4164-a8a1-f9574725257c.
+As J12 propriedades foram atualizadas.
+J12 conectado pino 1 para GPIO17.
+Adiciona rede Net-(J12-Pin_2).
+J12 conectado pino 2 para Net-(J12-Pin_2).
+J13 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J13.
+O valor J13 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J13 foi atualizada de  para /a2141100-58a8-40e4-8e6b-c61378d5ca7f.
+As J13 propriedades foram atualizadas.
+J13 conectado pino 1 para GPIO23.
+Adiciona rede Net-(J13-Pin_2).
+J13 conectado pino 2 para Net-(J13-Pin_2).
+J14 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J14.
+O valor J14 foi trocado de PinSocket_1x06_P2.54mm_Vertical para SDCARD.
+A associação do símbolo J14 foi atualizada de  para /383ebe1b-5179-44e3-933f-40b7a90eb336.
+As J14 propriedades foram atualizadas.
+J14 conectado pino 1 para GND.
+Adiciona rede +5V.
+J14 conectado pino 2 para +5V.
+J14 conectado pino 3 para Net-(J10-Pin_2).
+J14 conectado pino 4 para Net-(J11-Pin_2).
+J14 conectado pino 5 para Net-(J12-Pin_2).
+J14 conectado pino 6 para Net-(J13-Pin_2).
+J15 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J15.
+O valor J15 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J15 foi atualizada de  para /a12612e7-4f06-45a5-8442-667c9a3bdb67.
+As J15 propriedades foram atualizadas.
+J15 conectado pino 1 para +5V.
+J15 conectado pino 2 para +5V.
+J15 conectado pino 3 para +5V.
+J15 conectado pino 4 para +5V.
+J15 conectado pino 5 para +5V.
+J15 conectado pino 6 para +5V.
+J16 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J16.
+O valor J16 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J16 foi atualizada de  para /4f35784c-98e8-4759-8b61-ac138c61f275.
+As J16 propriedades foram atualizadas.
+J16 conectado pino 1 para GND.
+J16 conectado pino 2 para GND.
+J16 conectado pino 3 para GND.
+J16 conectado pino 4 para GND.
+J16 conectado pino 5 para GND.
+J16 conectado pino 6 para GND.
+J17 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J17.
+O valor J17 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J17 foi atualizada de  para /87eb39af-973c-46c0-b2ed-71fce9471caa.
+As J17 propriedades foram atualizadas.
+J17 conectado pino 1 para +3.3V.
+J17 conectado pino 2 para +3.3V.
+J17 conectado pino 3 para +3.3V.
+J17 conectado pino 4 para +3.3V.
+J17 conectado pino 5 para +3.3V.
+J17 conectado pino 6 para +3.3V.
+J18 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_2x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J18.
+O valor J18 foi trocado de PinSocket_2x03_P2.54mm_Vertical para Conn_01x06_Socket.
+A associação do símbolo J18 foi atualizada de  para /2de1d007-17d4-48f8-b6b3-a63d695bdff1.
+As J18 propriedades foram atualizadas.
+J18 conectado pino 1 para GND.
+J18 conectado pino 2 para GND.
+J18 conectado pino 3 para GND.
+J18 conectado pino 4 para GND.
+J18 conectado pino 5 para GND.
+J18 conectado pino 6 para GND.
+J19 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J19.
+O valor J19 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J19 foi atualizada de  para /0d62f900-32f6-4c08-8166-f5029926bb71.
+As J19 propriedades foram atualizadas.
+J19 conectado pino 1 para +3.3V.
+J20 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J20.
+O valor J20 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J20 foi atualizada de  para /150d5d84-9471-4ad7-9f15-03c74206db68.
+As J20 propriedades foram atualizadas.
+Adiciona rede Net-(J20-Pin_1).
+J20 conectado pino 1 para Net-(J20-Pin_1).
+J21 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J21.
+O valor J21 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J21 foi atualizada de  para /25b9f3ab-fac1-4e77-953c-133c247683d1.
+As J21 propriedades foram atualizadas.
+J21 conectado pino 1 para GND.
+J22 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J22.
+O valor J22 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J22 foi atualizada de  para /4d8b4237-90da-423d-a5eb-1976f7684a84.
+As J22 propriedades foram atualizadas.
+Adiciona rede Net-(J22-Pin_1).
+J22 conectado pino 1 para Net-(J22-Pin_1).
+J23 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J23.
+O valor J23 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J23 foi atualizada de  para /cea03950-1db6-48ca-91b6-574d05659563.
+As J23 propriedades foram atualizadas.
+J23 conectado pino 1 para +5V.
+J24 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J24.
+O valor J24 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J24 foi atualizada de  para /97528931-7541-4b9d-80d6-c3dbf05086ae.
+As J24 propriedades foram atualizadas.
+Adiciona rede Net-(J24-Pin_1).
+J24 conectado pino 1 para Net-(J24-Pin_1).
+J25 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J25.
+O valor J25 foi trocado de PinSocket_1x01_P2.54mm_Vertical para Connector_Generic_Conn_01x01.
+A associação do símbolo J25 foi atualizada de  para /09adabe3-da5f-4bac-8eb8-1cd1dae6a90f.
+As J25 propriedades foram atualizadas.
+Adiciona rede Net-(J25-Pin_1).
+J25 conectado pino 1 para Net-(J25-Pin_1).
+J26 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J26.
+O valor J26 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J26 foi atualizada de  para /f6d6bff5-a91e-4da5-9115-b116b6fb9903.
+As J26 propriedades foram atualizadas.
+J26 conectado pino 1 para GPIO2.
+Adiciona rede Net-(J26-Pin_2).
+J26 conectado pino 2 para Net-(J26-Pin_2).
+J27 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J27.
+O valor J27 foi trocado de PinSocket_1x03_P2.54mm_Vertical para TempAgua.
+A associação do símbolo J27 foi atualizada de  para /a20baa9f-dedf-41d5-8ebb-22af27969803.
+As J27 propriedades foram atualizadas.
+J27 conectado pino 1 para +3.3V.
+J27 conectado pino 2 para GND.
+J27 conectado pino 3 para Net-(J26-Pin_2).
+J28 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J28.
+O valor J28 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J28 foi atualizada de  para /2b684305-6993-4e7c-a7d3-209b79c61ca7.
+As J28 propriedades foram atualizadas.
+J28 conectado pino 1 para GPIO15.
+Adiciona rede Net-(J28-Pin_2).
+J28 conectado pino 2 para Net-(J28-Pin_2).
+F1 foi adicionado (footprint 'Fuse:Fuse_Blade_Mini_directSolder').
+J29 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J29.
+O valor J29 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J29 foi atualizada de  para /bc71bae8-7eee-410c-8786-b9a463acd5f4.
+As J29 propriedades foram atualizadas.
+J29 conectado pino 1 para GPIO4.
+Adiciona rede Net-(J29-Pin_2).
+J29 conectado pino 2 para Net-(J29-Pin_2).
+O designador de referência REF** foi trocado para F1.
+J30 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J30.
+O valor J30 foi trocado de PinHeader_1x03_P2.54mm_Vertical para Conn_02x01.
+A associação do símbolo J30 foi atualizada de  para /10febd8e-8c17-4c5a-aa8d-aef970c2fb62.
+As J30 propriedades foram atualizadas.
+Adiciona rede GPIO25.
+J30 conectado pino 1 para GPIO25.
+Adiciona rede Net-(J30-Pin_2).
+J30 conectado pino 2 para Net-(J30-Pin_2).
+O valor F1 foi trocado de Fuse_Blade_Mini_directSolder para Fuse_Small.
+J31 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x15_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J31.
+O valor J31 foi trocado de PinSocket_1x15_P2.54mm_Vertical para Conn_01x15.
+A associação do símbolo J31 foi atualizada de  para /10724a8e-7330-4113-82eb-c21e2e32c7cb.
+As J31 propriedades foram atualizadas.
+Adiciona rede GPIO36.
+J31 conectado pino 1 para GPIO36.
+Adiciona rede GPIO37.
+J31 conectado pino 2 para GPIO37.
+Adiciona rede GPIO38.
+J31 conectado pino 3 para GPIO38.
+Adiciona rede GPIO39.
+J31 conectado pino 4 para GPIO39.
+Adiciona rede GPIO34.
+J31 conectado pino 5 para GPIO34.
+Adiciona rede GPIO35.
+J31 conectado pino 6 para GPIO35.
+Adiciona rede GPIO32.
+J31 conectado pino 7 para GPIO32.
+Adiciona rede GPIO33.
+J31 conectado pino 8 para GPIO33.
+J31 conectado pino 9 para GPIO25.
+Adiciona rede GPIO26.
+J31 conectado pino 10 para GPIO26.
+Adiciona rede GPIO27.
+J31 conectado pino 11 para GPIO27.
+Adiciona rede GPIO14.
+J31 conectado pino 12 para GPIO14.
+J31 conectado pino 13 para GPIO12.
+J31 conectado pino 14 para GPIO13.
+J31 conectado pino 15 para GPIO21.
+A associação do símbolo F1 foi atualizada de  para /c1d7801a-6b12-4f47-9515-0a04361f112b.
+J32 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J32.
+O valor J32 foi trocado de PinSocket_1x03_P2.54mm_Vertical para RELE 5V.
+A associação do símbolo J32 foi atualizada de  para /58c401f6-22d2-49f2-8ff1-c45d8096d9fc.
+As J32 propriedades foram atualizadas.
+J32 conectado pino 1 para Net-(J30-Pin_2).
+J32 conectado pino 2 para +5V.
+J32 conectado pino 3 para GND.
+As F1 propriedades foram atualizadas.
+J33 foi adicionado (footprint 'Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical').
+O designador de referência REF** foi trocado para J33.
+O valor J33 foi trocado de PinSocket_1x06_P2.54mm_Vertical para RTCLOCK.
+A associação do símbolo J33 foi atualizada de  para /0ee37a11-49ce-488d-b891-0c484b4f747e.
+As J33 propriedades foram atualizadas.
+Adiciona rede unconnected-(J33-Pin_1-Pad1).
+J33 conectado pino 1 para unconnected-(J33-Pin_1-Pad1).
+Adiciona rede unconnected-(J33-Pin_2-Pad2).
+J33 conectado pino 2 para unconnected-(J33-Pin_2-Pad2).
+J33 conectado pino 3 para Net-(J28-Pin_2).
+J33 conectado pino 4 para Net-(J29-Pin_2).
+J33 conectado pino 5 para GND.
+J33 conectado pino 6 para +3.3V.
+Adiciona rede +12V.
+R1 foi adicionado (footprint 'Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal').
+O designador de referência REF** foi trocado para R1.
+O valor R1 foi trocado de R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal para 4.7K.
+A associação do símbolo R1 foi atualizada de  para /a75eec54-199d-41d9-8f95-efb9cccda96f.
+As R1 propriedades foram atualizadas.
+R1 conectado pino 1 para Net-(J1-Pin_2).
+R1 conectado pino 2 para +3.3V.
+F1 conectado pino 1 para +12V.
+R2 foi adicionado (footprint 'Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal').
+O designador de referência REF** foi trocado para R2.
+O valor R2 foi trocado de R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal para 4.7K.
+A associação do símbolo R2 foi atualizada de  para /ccbe101d-b652-4912-8be1-4bf5a51ddce3.
+As R2 propriedades foram atualizadas.
+R2 conectado pino 1 para Net-(J26-Pin_2).
+R2 conectado pino 2 para +3.3V.
+Adiciona rede Net-(U1-Vin).
+R3 foi adicionado (footprint 'Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal').
+O designador de referência REF** foi trocado para R3.
+O valor R3 foi trocado de R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal para 4.7K.
+A associação do símbolo R3 foi atualizada de  para /735b5140-8766-4d23-8815-72e40993a14f.
+As R3 propriedades foram atualizadas.
+R3 conectado pino 1 para +3.3V.
+R3 conectado pino 2 para Net-(J29-Pin_2).
+F1 conectado pino 2 para Net-(U1-Vin).
+R4 foi adicionado (footprint 'Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal').
+O designador de referência REF** foi trocado para R4.
+O valor R4 foi trocado de R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal para 4.7K.
+A associação do símbolo R4 foi atualizada de  para /97bd7d2a-6726-47d1-83aa-23180b3bc53a.
+As R4 propriedades foram atualizadas.
+R4 conectado pino 1 para +3.3V.
+R4 conectado pino 2 para Net-(J28-Pin_2).
+J1 foi adicionado (footprint 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical').
+U1 foi adicionado (footprint 'YAAJ_DCDC_StepDown_LM2596').
+O designador de referência REF** foi trocado para U1.
+A associação do símbolo U1 foi atualizada de  para /75969c5d-7e5c-4a49-9c11-db38dafc0708.
+As U1 propriedades foram atualizadas.
+U1 conectado pino 3 para GND.
+U1 conectado pino 4 para +5V.
+U1 conectado pino 2 para GNDREF.
+U1 conectado pino 1 para Net-(U1-Vin).
+O designador de referência REF** foi trocado para J1.
+U2 foi adicionado (footprint 'Heltec_wifi_LoRa_v2:Heltec_WiFi_LoRa_V2').
+O designador de referência REF** foi trocado para U2.
+O valor U2 foi trocado de Heltec WiFi LoRa V2 para Heltec_Wifi_LoRa_V1.
+A associação do símbolo U2 foi atualizada de  para /90bc1ba7-a3d7-4c82-a5be-9c2488751d83.
+As U2 propriedades foram atualizadas.
+U2 conectado pino 1 para GND.
+U2 conectado pino 2 para +5V.
+U2 conectado pino 3 para Net-(J20-Pin_1).
+U2 conectado pino 4 para Net-(J22-Pin_1).
+U2 conectado pino 5 para TX.
+U2 conectado pino 6 para RX.
+U2 conectado pino 7 para RST.
+U2 conectado pino 8 para GPIO0.
+U2 conectado pino 9 para GPIO22.
+U2 conectado pino 10 para GPIO19.
+U2 conectado pino 11 para GPIO23.
+U2 conectado pino 12 para GPIO18.
+U2 conectado pino 13 para GPIO5.
+U2 conectado pino 14 para GPIO15.
+U2 conectado pino 15 para GPIO2.
+U2 conectado pino 16 para GPIO4.
+U2 conectado pino 17 para GPIO17.
+U2 conectado pino 18 para GPIO16.
+U2 conectado pino 19 para GPIO21.
+U2 conectado pino 20 para GPIO13.
+U2 conectado pino 21 para GPIO12.
+U2 conectado pino 22 para GPIO14.
+U2 conectado pino 23 para GPIO27.
+U2 conectado pino 24 para GPIO26.
+U2 conectado pino 25 para GPIO25.
+U2 conectado pino 26 para GPIO33.
+U2 conectado pino 27 para GPIO32.
+U2 conectado pino 28 para GPIO35.
+U2 conectado pino 29 para GPIO34.
+U2 conectado pino 30 para GPIO39.
+U2 conectado pino 31 para GPIO38.
+U2 conectado pino 32 para GPIO37.
+U2 conectado pino 33 para GPIO36.
+U2 conectado pino 34 para +3.3V.
+U2 conectado pino 35 para Net-(J25-Pin_1).
+U2 conectado pino 36 para Net-(J24-Pin_1).
+Atenção: Nenhuma rede foi encontrada para o símbolo J13 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J10 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J5 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J12 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J30 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J3 pino 4.
+Atenção: Nenhuma rede foi encontrada para o símbolo J29 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J11 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J28 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J26 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J1 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J3 pino 3.
+Atenção: Nenhuma rede foi encontrada para o símbolo J6 pino 3.
+
+
+Informação: Total de avisos: 0, erros: 0.
